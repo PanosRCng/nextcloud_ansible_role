@@ -1,0 +1,12 @@
+---
+
+
+- name: Create nextcloud cron job | create nextcloud cron.php cron job
+  ansible.builtin.cron:
+    name: "nextlcoud cron job"
+    minute: "*/5"
+    hour: "*"
+    day: "*"
+    month: "*"
+    weekday: "*"
+    job: "/usr/bin/docker exec -u {{ nextcloud_user_id }}:{{ nextcloud_group_id }} nextcloud_stack_nextcloud php -f /var/www/html/cron.php"

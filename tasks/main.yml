@@ -1,0 +1,16 @@
+---
+
+- name: Copy docker stack files
+  include_tasks: copy_stack.yml
+
+
+- name: Copy env file
+  include_tasks: copy_env.yml
+
+
+- name: Deploy nextcloud
+  include_tasks: deploy_nextcloud.yml
+
+
+- name: Create nextcloud cron job
+  include_tasks: create_nextcloud_cron_job.yml

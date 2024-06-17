@@ -1,0 +1,41 @@
+---
+
+ansible_user: default_ansible_user
+
+docker_user: default_ansible_user
+
+nextcloud_docker_stack_directory: "/home/default/docker_stacks/nextcloud_docker_stack"
+
+
+nextcloud_network_subnet: "172.17.0.0/24"
+nextcloud_network_gateway: "172.17.0.1"
+
+nextcloud_user_id: 1000
+nextcloud_group_id: 1000
+
+
+db_data_directory: "{{ nextcloud_docker_stack_directory }}/stack_data/db_data/"
+db_database: "nextcloud"
+db_user: "DB_USER"
+db_password: "DB_PASSWORD"
+db_root_host: "%"
+db_root_password: "DB_ROOT_PASSWORD"
+db_auto_upgrade: 1
+db_disable_upgrade_backup: 1
+
+redis_data_directory: "{{ nextcloud_docker_stack_directory }}/stack_data/redis_data/"
+
+nextcloud_app_data_directory: "{{ nextcloud_docker_stack_directory }}/stack_data/nextcloud_data/app_data/"
+nextcloud_datadir_directory: "{{ nextcloud_docker_stack_directory }}/stack_data/nextcloud_data/datadir/"
+nextcloud_admin_user: "NEXTCLOUD_ADMIN_USER"
+nextcloud_admin_password: "NEXTCLOUD_ADMIN_PASSWORD"
+nextcloud_data_dir: "/datadir"
+nextcloud_trusted_domains: "'nextcloud.mydomain.com'"
+nextcloud_overwritecliurl: "https://nextcloud.mydomain.com"
+nextcloud_overwriteprotocol: "https"
+
+php_memory_limit: "512M"
+php_upload_limit: "512M"
+
+nginx_http_port: 8080
+nginx_data_directory: "{{ nextcloud_docker_stack_directory }}/stack_data/nginx_data/"

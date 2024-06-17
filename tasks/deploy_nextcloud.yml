@@ -1,0 +1,32 @@
+---
+
+
+- name: Deploy nextcloud | tear down existing docker stack services
+  community.docker.docker_compose_v2:
+    project_src: "{{ nextcloud_docker_stack_directory }}"
+    files: 
+      - nextcloud.yml
+    env_files: 
+      - env
+    state: absent
+
+
+- name: Deploy nextcloud | deploy docker compose stack services
+  community.docker.docker_compose_v2:
+    project_src: "{{ nextcloud_docker_stack_directory }}"
+    files: 
+      - nextcloud.yml
+    env_files: 
+      - env
+  register: output
+
+
+- name: Deploy nextcloud | verify that services are running
+  ansible.builtin.assert:
+    that:
+      - "output.containers[0].State == 'running'"
+      - "output.containers[1].State == 'running'"
+      - "output.containers[2].State == 'running'"
+      - "output.containers[3].State == 'running'"
+    fail_msg: "containers could not start"
+    success_msg: "containers started"
